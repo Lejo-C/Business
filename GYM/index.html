@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iron & Oak | Premium Strength Facility</title>
+    <title>PRO GYM | Premium Strength Facility</title>
     <style>
         /* Typography & Resets */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
@@ -12,10 +13,11 @@
             --bg-color: #FAFAFA;
             --text-main: #111111;
             --text-muted: #555555;
-            --accent: #D64000; /* Flat Burnt Orange */
+            --accent: #D64000;
+            /* Flat Burnt Orange */
             --border-color: #E0E0E0;
             --surface: #FFFFFF;
-            
+
             /* New Variables for Rounded Corners & Transitions */
             --radius: 8px;
             --transition: all 0.3s ease;
@@ -40,17 +42,30 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        h1, h2, h3 {
+        h1,
+        h2,
+        h3 {
             font-weight: 700;
             line-height: 1.1;
             letter-spacing: -0.02em;
             color: var(--text-main);
         }
 
-        h1 { font-size: 4rem; margin-bottom: 1.5rem; }
-        h2 { font-size: 2.5rem; margin-bottom: 1rem; }
-        h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
-        
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
         p {
             color: var(--text-muted);
             margin-bottom: 1.5rem;
@@ -58,7 +73,10 @@
             max-width: 600px;
         }
 
-        a { text-decoration: none; color: inherit; }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
         /* Animations */
         @keyframes fadeInUp {
@@ -66,6 +84,7 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -76,9 +95,17 @@
             animation: fadeInUp 0.8s ease backwards;
         }
 
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-        .delay-3 { animation-delay: 0.6s; }
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
 
         /* Layout & Utilities */
         .container {
@@ -196,7 +223,7 @@
 
         .facility-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         }
 
         .facility-card img {
@@ -291,8 +318,14 @@
             color: #FFFFFF;
         }
 
-        .pricing h2, .pricing h3 { color: #FFFFFF; }
-        .pricing p { color: #A0A0A0; }
+        .pricing h2,
+        .pricing h3 {
+            color: #FFFFFF;
+        }
+
+        .pricing p {
+            color: #A0A0A0;
+        }
 
         .pricing-grid {
             display: grid;
@@ -404,33 +437,55 @@
                 margin-left: auto;
                 margin-right: auto;
             }
+
             .pricing-card.featured {
                 transform: scale(1);
             }
+
             .pricing-card.featured:hover {
                 transform: translateY(-5px);
             }
+
             .footer-grid {
                 grid-template-columns: 1fr 1fr;
             }
         }
 
         @media (max-width: 768px) {
-            .hero, .space-grid, .numbers-grid, .test-grid, .gallery-grid {
+
+            .hero,
+            .space-grid,
+            .numbers-grid,
+            .test-grid,
+            .gallery-grid {
                 grid-template-columns: 1fr;
             }
-            h1 { font-size: 3rem; }
-            .hero { padding: 3rem 0; gap: 2rem; }
-            .hero-img { height: 400px; }
-            .footer-grid { grid-template-columns: 1fr; }
+
+            h1 {
+                font-size: 3rem;
+            }
+
+            .hero {
+                padding: 3rem 0;
+                gap: 2rem;
+            }
+
+            .hero-img {
+                height: 400px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <div class="container fade-in">
         <nav>
-            <div class="logo">IRON & OAK</div>
+            <div class="logo">PRO GYM</div>
             <a href="#membership" class="btn btn-outline">Join the waitlist</a>
         </nav>
     </div>
@@ -439,10 +494,12 @@
     <header class="container hero">
         <div class="fade-in delay-1">
             <h1>A facility built for serious training.</h1>
-            <p>We provide the space and the equipment. You do the work. No crowded floors, no waiting for squat racks, and no hidden maintenance fees.</p>
+            <p>We provide the space and the equipment. You do the work. No crowded floors, no waiting for squat racks,
+                and no hidden maintenance fees.</p>
             <a href="#membership" class="btn">View Membership</a>
         </div>
-        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop" alt="Real photo of the gym floor" class="hero-img fade-in delay-2">
+        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop"
+            alt="Real photo of the gym floor" class="hero-img fade-in delay-2">
     </header>
 
     <!-- Hard Numbers / Proof -->
@@ -470,7 +527,8 @@
 
         <div class="space-grid">
             <div class="facility-card">
-                <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=1469&auto=format&fit=crop" alt="Free weights area">
+                <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=1469&auto=format&fit=crop"
+                    alt="Free weights area">
                 <h3>Free Weights</h3>
                 <ul>
                     <li><span>Rogue Ohio Power Bars</span> <span>12</span></li>
@@ -480,7 +538,8 @@
             </div>
 
             <div class="facility-card">
-                <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=1470&auto=format&fit=crop" alt="Machine area">
+                <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=1470&auto=format&fit=crop"
+                    alt="Machine area">
                 <h3>Machines & Conditioning</h3>
                 <ul>
                     <li><span>Prime Fitness Cable Towers</span> <span>4</span></li>
@@ -492,9 +551,12 @@
 
         <!-- Equipment Photos Gallery -->
         <div class="gallery-grid">
-            <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1470&auto=format&fit=crop" alt="Squat Racks" class="gallery-img">
-            <img src="https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?q=80&w=1471&auto=format&fit=crop" alt="Dumbbell Rack" class="gallery-img">
-            <img src="https://images.unsplash.com/photo-1534438097545-a2c7201c18c9?q=80&w=1470&auto=format&fit=crop" alt="Plate Loaded Machines" class="gallery-img">
+            <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1470&auto=format&fit=crop"
+                alt="Squat Racks" class="gallery-img">
+            <img src="https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?q=80&w=1471&auto=format&fit=crop"
+                alt="Dumbbell Rack" class="gallery-img">
+            <img src="https://images.unsplash.com/photo-1534438097545-a2c7201c18c9?q=80&w=1470&auto=format&fit=crop"
+                alt="Plate Loaded Machines" class="gallery-img">
         </div>
     </section>
 
@@ -503,20 +565,23 @@
         <div class="container">
             <h2>Member Logs</h2>
             <p>Don't take our word for it. Hear from people who train here every week.</p>
-            
+
             <div class="test-grid">
                 <div class="test-card">
-                    <p class="quote">"Finally a gym where I don't have to wait 20 minutes for a bench. The strict cap on memberships actually works."</p>
+                    <p class="quote">"Finally a gym where I don't have to wait 20 minutes for a bench. The strict cap on
+                        memberships actually works."</p>
                     <p class="author">Marcus T.</p>
                     <p class="stats">Member since 2024</p>
                 </div>
                 <div class="test-card">
-                    <p class="quote">"The calibrated plates and stiff bars make a huge difference for prep. It’s clean, it’s loud, and the equipment is well-maintained."</p>
+                    <p class="quote">"The calibrated plates and stiff bars make a huge difference for prep. It’s clean,
+                        it’s loud, and the equipment is well-maintained."</p>
                     <p class="author">Sarah J.</p>
                     <p class="stats">Powerlifter</p>
                 </div>
                 <div class="test-card">
-                    <p class="quote">"I come in at 2 AM because of my shift work. The 24/7 access is seamless and the facility is always spotless."</p>
+                    <p class="quote">"I come in at 2 AM because of my shift work. The 24/7 access is seamless and the
+                        facility is always spotless."</p>
                     <p class="author">David R.</p>
                     <p class="stats">Night-shift Nurse</p>
                 </div>
@@ -543,7 +608,8 @@
                         <li>Locker room access</li>
                         <li>No guest passes</li>
                     </ul>
-                    <button class="btn btn-outline" style="width: 100%; border-color: #555; color: #FFF;">Select Plan</button>
+                    <button class="btn btn-outline" style="width: 100%; border-color: #555; color: #FFF;">Select
+                        Plan</button>
                 </div>
 
                 <!-- Package 2 (Featured) -->
@@ -569,7 +635,8 @@
                         <li>1-on-1 form check (1hr/mo)</li>
                         <li>Unlimited guest passes</li>
                     </ul>
-                    <button class="btn btn-outline" style="width: 100%; border-color: #555; color: #FFF;">Select Plan</button>
+                    <button class="btn btn-outline" style="width: 100%; border-color: #555; color: #FFF;">Select
+                        Plan</button>
                 </div>
             </div>
         </div>
@@ -580,8 +647,9 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <h4>Iron & Oak</h4>
-                    <p style="font-size: 0.875rem;">A facility built for serious training. No fluff, just heavy weights and hard work.</p>
+                    <h4>PRO GYM</h4>
+                    <p style="font-size: 0.875rem;">A facility built for serious training. No fluff, just heavy weights
+                        and hard work.</p>
                 </div>
                 <div class="footer-col">
                     <h4>Location</h4>
@@ -610,10 +678,11 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                © 2026 Iron & Oak Strength. All rights reserved.
+                © 2026 PRO GYM Strength. All rights reserved.
             </div>
         </div>
     </footer>
 
 </body>
+
 </html>
