@@ -1,0 +1,12 @@
+import { useState } from 'react'
+
+export default function CheckoutModal({ open, cart, total, onClose, onComplete }) {
+  const [form, setForm] = useState({ name: '', phone: '', email: '', address: '', city: '', postal: '' })
+  if (!open) return null
+  const subtotal = cart.reduce((amount, item) => amount + item.price * item.quantity, 0)
+  const shipping = subtotal >= 150 ? 0 : 12
+  const displayedTotal = cart.length ? subtotal + shipping : total
+  const update = (event) => setForm({ ...form, [event.target.name]: event.target.value })
+  const submit = (event) => { event.preventDefault(); onComplete() }
+  return <div className="modal-overlay" role="presentation"><section className="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-title"><button className="modal-close" onClick={onClose} aria-label="Close checkout">×</button><h2 id="checkout-title">Delivery details</h2><p>Enter your details and we’ll prepare your order.</p><div className="checkout-order-line"><span>{cart.reduce((amount, item) => amount + item.quantity, 0)} item{cart.length !== 1 ? 's' : ''}</span><strong>${displayedTotal.toFixed(2)}</strong></div><form className="checkout-form" onSubmit={submit}><div className="field form-full"><label htmlFor="name">Full name</label><input id="name" name="name" value={form.name} onChange={update} required placeholder="Your full name" /></div><div className="field"><label htmlFor="email">Email</label><input id="email" type="email" name="email" value={form.email} onChange={update} required placeholder="you@example.com" /></div><div className="field"><label htmlFor="phone">Phone number</label><input id="phone" type="tel" name="phone" value={form.phone} onChange={update} required placeholder="Your phone number" /></div><div className="field form-full"><label htmlFor="address">Street address</label><textarea id="address" name="address" value={form.address} onChange={update} required placeholder="House number, street, apartment" /></div><div className="field"><label htmlFor="city">City</label><input id="city" name="city" value={form.city} onChange={update} required placeholder="Your city" /></div><div className="field"><label htmlFor="postal">Postal code</label><input id="postal" name="postal" value={form.postal} onChange={update} required placeholder="Postal code" /></div><button className="primary-button" type="submit">Confirm order · ${displayedTotal.toFixed(2)}</button></form></section></div>
+}

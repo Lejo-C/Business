@@ -1,0 +1,11 @@
+import ProductVisual from './ProductVisual'
+
+const money = (value) => `$${value.toFixed(2)}`
+
+export default function CartPage({ cart, onUpdateQuantity, onContinueShopping, onCheckout }) {
+  const subtotal = cart.reduce((total, item) => total + item.price * item.quantity, 0)
+  const shipping = subtotal >= 150 ? 0 : (cart.length ? 12 : 0)
+  const total = subtotal + shipping
+  if (!cart.length) return <section className="cart-page"><div className="cart-page-header"><h1>Your cart</h1><p>Items you save will appear here.</p></div><div className="empty-cart"><h2>Your cart is empty</h2><p>Browse the collection to find something for your space.</p><button className="primary-button" onClick={onContinueShopping}>Browse collection</button></div></section>
+  return <section className="cart-page"><div className="cart-page-header"><h1>Your cart</h1><p>{cart.reduce((total, item) => total + item.quantity, 0)} items selected for your home.</p></div><div className="cart-layout"><div className="cart-list">{cart.map((item) => <article className="cart-item" key={item.id}><div className="cart-item-image"><ProductVisual product={item} size="cart" /></div><div><p className="cart-item-category">{item.category}</p><h3>{item.name}</h3><p className="cart-item-price">{money(item.price)}</p><div className="quantity-control"><button onClick={() => onUpdateQuantity(item.id, -1)} aria-label={`Remove one ${item.name}`}>−</button><span>{item.quantity}</span><button onClick={() => onUpdateQuantity(item.id, 1)} disabled={item.quantity >= item.stock} aria-label={`Add one ${item.name}`}>+</button></div></div><span className="cart-item-total">{money(item.price * item.quantity)}</span></article>)}</div><aside className="summary"><h2>Order summary</h2><div className="summary-line"><span>Subtotal</span><span>{money(subtotal)}</span></div><div className="summary-line"><span>Delivery</span><span>{shipping ? money(shipping) : 'Free'}</span></div><div className="summary-line"><span>Estimated tax</span><span>Calculated at checkout</span></div><div className="summary-total"><span>Total</span><span>{money(total)}</span></div><button className="primary-button" onClick={onCheckout}>Place order</button><p className="summary-note">Free delivery on orders over $150.</p></aside></div></section>
+}

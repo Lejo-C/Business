@@ -1,0 +1,3 @@
+export function SearchIcon() { return <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="7" /><path d="m20 20-4-4" /></svg> }
+export function CartIcon() { return <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3h2l2.2 12.2a2 2 0 0 0 2 1.7h7.9a2 2 0 0 0 2-1.6L20.8 7H6" /><circle cx="10" cy="21" r="1" /><circle cx="18" cy="21" r="1" /></svg> }
+export function ArrowLeft() { return <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="m15 18-6-6 6-6" /></svg> }
