@@ -1,688 +1,505 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRO GYM | Premium Strength Facility</title>
-    <style>
-        /* Typography & Resets */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
-
-        :root {
-            --bg-color: #FAFAFA;
-            --text-main: #111111;
-            --text-muted: #555555;
-            --accent: #D64000;
-            /* Flat Burnt Orange */
-            --border-color: #E0E0E0;
-            --surface: #FFFFFF;
-
-            /* New Variables for Rounded Corners & Transitions */
-            --radius: 8px;
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            font-size: 16px;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        h1,
-        h2,
-        h3 {
-            font-weight: 700;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-            color: var(--text-main);
-        }
-
-        h1 {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        p {
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-            font-size: 1.125rem;
-            max-width: 600px;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            animation: fadeInUp 0.8s ease backwards;
-        }
-
-        .delay-1 {
-            animation-delay: 0.2s;
-        }
-
-        .delay-2 {
-            animation-delay: 0.4s;
-        }
-
-        .delay-3 {
-            animation-delay: 0.6s;
-        }
-
-        /* Layout & Utilities */
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .section-pad {
-            padding: 8rem 0;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: #FFFFFF;
-            padding: 1rem 2rem;
-            font-weight: 500;
-            font-size: 1rem;
-            border: none;
-            cursor: pointer;
-            text-align: center;
-            border-radius: var(--radius);
-            transition: var(--transition);
-        }
-
-        .btn:hover {
-            background-color: #B33600;
-            transform: translateY(-2px);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            color: var(--text-main);
-            border: 2px solid var(--text-main);
-        }
-
-        .btn-outline:hover {
-            background-color: var(--text-main);
-            color: #FFFFFF;
-        }
-
-        /* Navbar */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 2rem 0;
-        }
-
-        nav .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
-
-        /* Hero Section */
-        .hero {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            padding: 6rem 0;
-        }
-
-        .hero-img {
-            width: 100%;
-            height: 600px;
-            background-color: var(--border-color);
-            object-fit: cover;
-            border-radius: var(--radius);
-            transition: var(--transition);
-        }
-
-        /* Numbers Section */
-        .numbers {
-            background-color: var(--surface);
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-            padding: 4rem 0;
-        }
-
-        .numbers-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .number-item h2 {
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-        }
-
-        .number-item p {
-            margin-bottom: 0;
-            font-size: 1rem;
-        }
-
-        /* Equipment / Space Section */
-        .space-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .facility-card {
-            background-color: var(--surface);
-            border: 1px solid var(--border-color);
-            padding: 2rem;
-            border-radius: var(--radius);
-            transition: var(--transition);
-        }
-
-        .facility-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-        }
-
-        .facility-card img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            margin-bottom: 1.5rem;
-            background-color: var(--border-color);
-            border-radius: calc(var(--radius) - 4px);
-        }
-
-        .facility-card ul {
-            list-style: none;
-            color: var(--text-muted);
-            margin-top: 1rem;
-        }
-
-        .facility-card ul li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .facility-card ul li:last-child {
-            border-bottom: none;
-        }
-
-        /* Photo Gallery */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .gallery-img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: var(--radius);
-            transition: var(--transition);
-        }
-
-        .gallery-img:hover {
-            transform: scale(1.02);
-        }
-
-        /* Testimonials */
-        .testimonials {
-            background-color: var(--surface);
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .test-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .test-card {
-            padding: 2rem;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            background-color: var(--bg-color);
-        }
-
-        .test-card p.quote {
-            font-size: 1.125rem;
-            color: var(--text-main);
-            margin-bottom: 1.5rem;
-            font-style: italic;
-        }
-
-        .test-card p.author {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 0;
-        }
-
-        .test-card p.stats {
-            font-size: 0.875rem;
-            margin-bottom: 0;
-        }
-
-        /* Pricing */
-        .pricing {
-            background-color: #111111;
-            color: #FFFFFF;
-        }
-
-        .pricing h2,
-        .pricing h3 {
-            color: #FFFFFF;
-        }
-
-        .pricing p {
-            color: #A0A0A0;
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .pricing-card {
-            background-color: #1A1A1A;
-            border: 1px solid #333333;
-            padding: 3rem 2rem;
-            text-align: center;
-            border-radius: var(--radius);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-        }
-
-        .pricing-card.featured {
-            border-color: var(--accent);
-            background-color: #161616;
-            transform: scale(1.05);
-        }
-
-        .pricing-card.featured:hover {
-            transform: scale(1.05) translateY(-5px);
-        }
-
-        .price {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin: 1.5rem 0;
-        }
-
-        .price span {
-            font-size: 1.125rem;
-            font-weight: 400;
-            color: #A0A0A0;
-        }
-
-        .pricing-features {
-            list-style: none;
-            margin: 2rem 0;
-            flex-grow: 1;
-            text-align: left;
-        }
-
-        .pricing-features li {
-            padding: 0.75rem 0;
-            border-bottom: 1px solid #333;
-            color: #E0E0E0;
-        }
-
-        /* Footer */
-        footer {
-            padding: 4rem 0 2rem;
-            background-color: var(--surface);
-            border-top: 1px solid var(--border-color);
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .footer-col h4 {
-            font-size: 1.125rem;
-            margin-bottom: 1rem;
-        }
-
-        .footer-col ul {
-            list-style: none;
-        }
-
-        .footer-col ul li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-col ul li a {
-            color: var(--text-muted);
-            transition: var(--transition);
-        }
-
-        .footer-col ul li a:hover {
-            color: var(--accent);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-muted);
-            font-size: 0.875rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 992px) {
-            .pricing-grid {
-                grid-template-columns: 1fr;
-                max-width: 500px;
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .pricing-card.featured {
-                transform: scale(1);
-            }
-
-            .pricing-card.featured:hover {
-                transform: translateY(-5px);
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-
-            .hero,
-            .space-grid,
-            .numbers-grid,
-            .test-grid,
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-
-            h1 {
-                font-size: 3rem;
-            }
-
-            .hero {
-                padding: 3rem 0;
-                gap: 2rem;
-            }
-
-            .hero-img {
-                height: 400px;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PRO GYM — Built Different</title>
+<meta name="description" content="PRO GYM — a premium 24/7 strength facility built for serious training.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#080909; --surface:#111313; --surface-2:#171919; --text:#f5f5f2; --muted:#9b9f9c;
+  --line:rgba(255,255,255,.11); --accent:#ff4d00; --accent-2:#ff7a32;
+  --max:1240px; --ease:cubic-bezier(.2,.75,.25,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.045;z-index:20;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E")}
+a{color:inherit;text-decoration:none} button{font:inherit}
+.container{width:min(var(--max),calc(100% - 48px));margin:auto}
+.section{padding:120px 0;position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;color:#c9ccc9;text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;font-weight:800;margin-bottom:18px}
+.eyebrow:before{content:"";width:24px;height:2px;background:var(--accent)}
+h1,h2,h3{font-family:"Space Grotesk",Inter,sans-serif;line-height:.98;letter-spacing:-.045em}
+h1{font-size:clamp(4rem,8.2vw,8.2rem);font-weight:700}
+h2{font-size:clamp(2.7rem,5vw,5rem)}
+p{color:var(--muted);max-width:650px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;border:1px solid transparent;padding:15px 22px;background:var(--accent);color:white;font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:.78rem;transition:transform .35s var(--ease),background .35s var(--ease),box-shadow .35s var(--ease)}
+.btn:hover{transform:translateY(-4px);background:#ff5b16;box-shadow:0 16px 35px rgba(255,77,0,.24)}
+.btn.secondary{background:transparent;border-color:var(--line)}
+.btn.secondary:hover{background:white;color:#090909;border-color:white;box-shadow:none}
+.reveal{opacity:0;transform:translateY(35px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.visible{opacity:1;transform:none}
+
+/* NAV */
+.nav-wrap{position:fixed;top:0;left:0;right:0;z-index:50;padding:18px 0;transition:background .3s,backdrop-filter .3s,border .3s}
+.nav-wrap.scrolled{background:rgba(8,9,9,.78);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:"Space Grotesk";font-weight:900;letter-spacing:-.06em;font-size:1.35rem}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:32px;color:#bfc2bf;font-size:.83rem;font-weight:600}
+.nav-links a{transition:color .25s}
+.nav-links a:hover{color:#fff}
+.nav-actions{display:flex;gap:10px;align-items:center}
+.menu{display:none;background:none;color:#fff;border:0;font-size:1.6rem}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;align-items:end;padding:150px 0 70px;position:relative;overflow:hidden}
+.hero-media{position:absolute;inset:0;z-index:-2;background:
+linear-gradient(90deg,rgba(8,9,9,.96) 0%,rgba(8,9,9,.72) 45%,rgba(8,9,9,.28) 100%),
+linear-gradient(0deg,#080909 0%,transparent 38%),
+url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=85&w=2200&auto=format&fit=crop") center/cover}
+.hero-media:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 78% 42%,rgba(255,77,0,.2),transparent 28%)}
+.hero-content{max-width:900px}
+.hero h1{margin-bottom:30px}
+.hero h1 .outline{-webkit-text-stroke:1px rgba(255,255,255,.7);color:transparent}
+.hero-copy{font-size:1.08rem;margin-bottom:32px}
+.hero-buttons{display:flex;gap:12px;flex-wrap:wrap}
+.hero-meta{display:flex;gap:36px;margin-top:80px;padding-top:20px;border-top:1px solid var(--line)}
+.hero-meta strong{display:block;font-size:1.25rem}
+.hero-meta span{display:block;color:#8d928e;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;margin-top:3px}
+.scroll{position:absolute;right:0;bottom:72px;writing-mode:vertical-rl;color:#777;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase}
+
+/* MARQUEE */
+.marquee{overflow:hidden;background:var(--accent);color:#090909;border-block:1px solid rgba(0,0,0,.2);white-space:nowrap}
+.marquee-track{display:inline-flex;min-width:max-content;animation:marquee 22s linear infinite;padding:13px 0;font-weight:900;letter-spacing:.12em;text-transform:uppercase;font-size:.75rem}
+.marquee-track span{margin:0 28px}
+.marquee-track b{font-size:1rem}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* PROOF */
+.proof{background:#f1f1ed;color:#0b0c0c;padding:0}
+.proof-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.stat{padding:44px 32px;border-right:1px solid #d5d5d0}
+.stat:last-child{border-right:0}
+.stat-number{font-family:"Space Grotesk";font-size:clamp(3rem,5vw,5rem);font-weight:700;letter-spacing:-.07em}
+.stat-number small{font-size:1.3rem;color:var(--accent)}
+.stat p{color:#626663;font-size:.88rem;margin-top:5px}
+
+/* SPLIT */
+.split{display:grid;grid-template-columns:.85fr 1.15fr;gap:90px;align-items:start}
+.section-head p{margin-top:20px;font-size:1.05rem}
+.equipment{display:grid;gap:12px}
+.eq{display:grid;grid-template-columns:90px 1fr auto;gap:18px;align-items:center;padding:23px 0;border-bottom:1px solid var(--line);transition:padding .3s var(--ease)}
+.eq:hover{padding-left:10px}
+.eq-no{color:#555;font-size:.7rem;font-weight:800}
+.eq h3{font-size:1.25rem;letter-spacing:-.03em}
+.eq p{font-size:.78rem;margin-top:4px}
+.eq strong{color:#ddd;font-size:.78rem}
+.eq-arrow{color:var(--accent);font-size:1.2rem}
+
+/* GALLERY */
+.gallery-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:38px}
+.gallery-grid{display:grid;grid-template-columns:1.3fr .7fr .7fr;grid-template-rows:280px 280px;gap:12px}
+.gallery-item{overflow:hidden;position:relative;background:#151616}
+.gallery-item:first-child{grid-row:span 2}
+.gallery-item img{width:100%;height:100%;object-fit:cover;filter:saturate(.75);transition:transform .7s var(--ease),filter .7s var(--ease)}
+.gallery-item:hover img{transform:scale(1.07);filter:saturate(1)}
+.gallery-item:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.5),transparent 55%);pointer-events:none}
+
+/* EXPERIENCE */
+.experience{background:#111313}
+.exp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:50px}
+.exp-card{min-height:310px;padding:30px;background:var(--surface-2);border:1px solid var(--line);position:relative;overflow:hidden;transition:transform .45s var(--ease),border-color .35s}
+.exp-card:hover{transform:translateY(-8px);border-color:rgba(255,77,0,.55)}
+.exp-card:before{content:"";position:absolute;width:140px;height:140px;border-radius:50%;background:rgba(255,77,0,.12);filter:blur(35px);right:-55px;top:-55px}
+.exp-icon{font-size:1.6rem;margin-bottom:75px;color:var(--accent)}
+.exp-card h3{font-size:1.55rem;margin-bottom:9px}
+.exp-card p{font-size:.88rem}
+
+/* TESTIMONIALS */
+.testimonial-wrap{display:grid;grid-template-columns:.65fr 1.35fr;gap:80px}
+.quote-card{padding:0 0 0 55px;border-left:2px solid var(--accent);position:relative}
+.quote-mark{font-size:5rem;font-family:Georgia;line-height:.7;color:var(--accent);position:absolute;left:18px;top:-8px}
+.quote{font-family:"Space Grotesk";font-size:clamp(1.6rem,2.7vw,2.65rem);letter-spacing:-.04em;line-height:1.08;margin-bottom:30px;color:#f2f2ef}
+.author{font-weight:800}
+.author span{color:#777;font-weight:500;font-size:.8rem;margin-left:10px}
+
+/* PRICING */
+.pricing{background:#f1f1ed;color:#0a0b0b}
+.pricing .eyebrow{color:#555}
+.pricing h2{max-width:800px}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:55px}
+.price-card{background:#fff;border:1px solid #ddd;padding:35px;min-height:500px;display:flex;flex-direction:column;position:relative;transition:transform .4s var(--ease),box-shadow .4s}
+.price-card:hover{transform:translateY(-8px);box-shadow:0 25px 50px rgba(0,0,0,.09)}
+.price-card.featured{background:#0b0c0c;color:white;border-color:#0b0c0c;transform:translateY(-15px)}
+.price-card.featured:hover{transform:translateY(-22px)}
+.badge{position:absolute;top:18px;right:18px;background:var(--accent);color:#fff;font-size:.62rem;font-weight:900;padding:7px 10px;text-transform:uppercase;letter-spacing:.1em}
+.price-card h3{font-size:1.45rem}
+.price{font-family:"Space Grotesk";font-size:4.3rem;font-weight:700;letter-spacing:-.07em;margin:35px 0 28px}
+.price small{font-family:Inter;font-size:.75rem;color:#888;letter-spacing:0}
+.features{list-style:none;margin-bottom:30px;flex:1}
+.features li{padding:11px 0;border-bottom:1px solid #e4e4e0;color:#666;font-size:.82rem}
+.featured .features li{border-color:#292b2b;color:#bbb}
+.featured .price{color:#fff}
+.featured .btn{background:var(--accent)}
+.dark-text{color:#fff}
+
+/* CTA */
+.cta{padding:120px 0;background:radial-gradient(circle at 50% 0,rgba(255,77,0,.22),transparent 35%),#080909;text-align:center}
+.cta h2{max-width:900px;margin:0 auto 22px}
+.cta p{margin:0 auto 32px}
+
+/* FOOTER */
+footer{border-top:1px solid var(--line);padding:65px 0 25px}
+.footer-top{display:flex;justify-content:space-between;gap:50px;padding-bottom:55px}
+.footer-logo{font-family:"Space Grotesk";font-size:2rem;font-weight:900;letter-spacing:-.06em}
+.footer-logo span{color:var(--accent)}
+.footer-links{display:flex;gap:55px}
+.footer-col h4{text-transform:uppercase;font-size:.68rem;letter-spacing:.14em;color:#666;margin-bottom:15px}
+.footer-col a{display:block;color:#aaa;font-size:.82rem;margin:8px 0;transition:color .2s}
+.footer-col a:hover{color:#fff}
+.footer-bottom{border-top:1px solid var(--line);padding-top:22px;color:#666;font-size:.7rem;display:flex;justify-content:space-between}
+
+/* CURSOR GLOW */
+.cursor-glow{position:fixed;width:250px;height:250px;border-radius:50%;background:rgba(255,77,0,.08);filter:blur(45px);pointer-events:none;z-index:-1;transform:translate(-50%,-50%);transition:opacity .3s}
+
+/* MOBILE */
+@media(max-width:900px){
+ .nav-links{display:none}.menu{display:block}.nav-actions .btn{display:none}
+ .container{width:min(var(--max),calc(100% - 32px))}
+ .hero{padding-top:125px}.scroll{display:none}
+ .hero-meta{margin-top:55px}
+ .proof-grid,.exp-grid,.price-grid{grid-template-columns:1fr}
+ .stat{border-right:0;border-bottom:1px solid #d5d5d0;padding:28px 0}
+ .split,.testimonial-wrap{grid-template-columns:1fr;gap:45px}
+ .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:260px 260px 260px}
+ .gallery-item:first-child{grid-column:span 2;grid-row:span 1}
+ .price-card.featured{transform:none}
+ .price-card.featured:hover{transform:translateY(-8px)}
+ .footer-top{flex-direction:column}.footer-links{flex-wrap:wrap;gap:30px}
+}
+@media(max-width:560px){
+ h1{font-size:3.55rem}.section{padding:85px 0}
+ .hero{min-height:92vh}.hero-meta{gap:20px}.hero-meta strong{font-size:1rem}.hero-meta span{font-size:.6rem}
+ .gallery-grid{display:block}.gallery-item{height:260px;margin-bottom:10px}
+ .eq{grid-template-columns:45px 1fr}.eq strong{display:none}
+ .footer-links{display:grid;grid-template-columns:1fr 1fr}
+ .footer-bottom{flex-direction:column;gap:7px}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+ .reveal{opacity:1;transform:none}
+}
+
+/* PREMIUM ROUNDED REFINEMENT */
+:root{
+  --radius-sm:14px;
+  --radius-md:22px;
+  --radius-lg:32px;
+  --radius-xl:42px;
+}
+body{background:#070808}
+.nav-wrap{padding:14px 0}
+.nav-wrap.scrolled{margin:0 14px;border:1px solid rgba(255,255,255,.10);border-radius:0 0 22px 22px}
+.btn{border-radius:999px;padding:14px 23px;box-shadow:inset 0 1px rgba(255,255,255,.18)}
+.btn.secondary{border-radius:999px}
+.hero{min-height:100vh;padding-bottom:80px}
+.hero-media{
+  inset:14px;
+  border-radius:var(--radius-xl);
+  overflow:hidden;
+  background:
+    linear-gradient(90deg,rgba(7,8,8,.96) 0%,rgba(7,8,8,.67) 45%,rgba(7,8,8,.20) 100%),
+    linear-gradient(0deg,#070808 0%,transparent 40%),
+    url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=85&w=2200&auto=format&fit=crop") center/cover;
+}
+.hero-media:after{background:radial-gradient(circle at 78% 42%,rgba(255,77,0,.28),transparent 31%)}
+.hero-content{padding-top:20px}
+.hero-meta{
+  width:max-content;max-width:100%;padding:18px 22px;margin-top:58px;
+  border:1px solid rgba(255,255,255,.12);border-radius:18px;
+  background:rgba(255,255,255,.055);backdrop-filter:blur(14px);
+}
+.marquee{margin:0 14px;border-radius:999px;overflow:hidden}
+.proof{margin:0 14px;border-radius:0 0 30px 30px}
+.proof-grid{padding:0 14px}
+.stat{padding:42px 30px}
+.stat:first-child{border-radius:0 0 0 24px}
+.stat:last-child{border-radius:0 0 24px 0}
+.split{gap:100px}
+.eq{
+  padding:22px 22px;border:1px solid var(--line);border-radius:18px;
+  background:rgba(255,255,255,.025);margin-bottom:10px;
+}
+.eq:hover{padding-left:28px;background:rgba(255,255,255,.045);border-color:rgba(255,77,0,.28)}
+.gallery-grid{gap:16px}
+.gallery-item{border-radius:var(--radius-md);box-shadow:0 18px 50px rgba(0,0,0,.18)}
+.gallery-item:after{border-radius:inherit}
+.experience{margin:0 14px;border-radius:40px}
+.exp-card{border-radius:24px;background:linear-gradient(145deg,#191c1c,#101212)}
+.testimonial-wrap{padding:0 0}
+.quote-card{
+  padding:45px 55px 45px 78px;border:1px solid var(--line);border-left:2px solid var(--accent);
+  border-radius:0 28px 28px 0;background:linear-gradient(135deg,rgba(255,255,255,.045),rgba(255,255,255,.015));
+}
+.pricing{margin:0 14px;border-radius:40px}
+.price-card{border-radius:28px;padding:38px;box-shadow:0 15px 40px rgba(0,0,0,.04)}
+.price-card.featured{border-radius:32px;box-shadow:0 25px 60px rgba(0,0,0,.20)}
+.price-card .btn{margin-top:auto}
+.badge{border-radius:999px}
+.cta{
+  margin:0 14px;border-radius:40px;
+  background:radial-gradient(circle at 50% 0,rgba(255,77,0,.28),transparent 35%),#080909;
+}
+footer{margin:0 14px;border-radius:40px 40px 0 0;background:#0b0c0c;padding-left:20px;padding-right:20px}
+.footer-logo{font-size:2.2rem}
+.footer-bottom{border-color:rgba(255,255,255,.08)}
+@media(max-width:900px){
+  .hero-media{inset:8px;border-radius:28px}
+  .proof{margin:0 8px}
+  .experience,.pricing,.cta{margin:0 8px;border-radius:28px}
+  .proof-grid{padding:0}
+  .stat:first-child,.stat:last-child{border-radius:0}
+  .quote-card{padding:38px 30px 38px 60px;border-radius:0 22px 22px 0}
+  footer{margin:0 8px;border-radius:28px 28px 0 0}
+}
+@media(max-width:560px){
+  .hero-media{inset:6px;border-radius:24px}
+  .hero{padding-bottom:45px}
+  .hero-meta{width:100%;justify-content:space-between;padding:15px 16px;border-radius:16px}
+  .marquee{margin:0 6px}
+  .eq{padding:18px;border-radius:15px}
+  .gallery-grid{gap:10px}
+  .gallery-item{border-radius:18px}
+  .exp-card{border-radius:20px}
+  .price-card,.price-card.featured{border-radius:22px}
+}
+
+
+/* FINAL NAVBAR — iPhone-inspired floating glass */
+.nav-wrap{
+  position:fixed!important;
+  top:18px!important;
+  left:0!important;
+  right:0!important;
+  z-index:50!important;
+  padding:0!important;
+  margin:0!important;
+  background:transparent!important;
+  border:0!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+  transition:top .35s var(--ease)!important;
+}
+.nav-wrap .container{width:min(var(--max),calc(100% - 48px))}
+.nav-wrap nav{
+  padding:11px 12px 11px 18px;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:999px;
+  background:rgba(30,32,31,.20);
+  backdrop-filter:blur(24px) saturate(155%);
+  -webkit-backdrop-filter:blur(24px) saturate(155%);
+  box-shadow:0 8px 32px rgba(0,0,0,.12),inset 0 1px 0 rgba(255,255,255,.14);
+  transition:background .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease);
+}
+.nav-wrap.scrolled{
+  top:14px!important;
+  margin:0!important;
+  background:transparent!important;
+  border:0!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+.nav-wrap.scrolled nav{
+  background:rgba(18,20,19,.62);
+  border-color:rgba(255,255,255,.13);
+  box-shadow:0 12px 40px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.12);
+}
+.nav-wrap .btn{
+  box-shadow:none!important;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.16);
+  color:#fff;
+  padding:10px 18px;
+}
+.nav-wrap .btn:hover{
+  background:rgba(255,255,255,.16);
+  box-shadow:none!important;
+  transform:translateY(-1px);
+}
+.nav-wrap .logo{font-size:1.28rem}
+.nav-wrap .nav-links{gap:28px}
+.nav-wrap .nav-links a{color:rgba(255,255,255,.78)}
+.nav-wrap .nav-links a:hover{color:#fff}
+.nav-wrap .menu{font-size:1.35rem}
+
+/* Remove the heavy "popped out" glow from the hero's primary CTA */
+.hero-buttons .btn:first-child{box-shadow:none!important}
+.hero-buttons .btn:first-child:hover{box-shadow:0 12px 28px rgba(255,77,0,.18)!important}
+
+@media(max-width:900px){
+  .nav-wrap{top:10px!important}
+  .nav-wrap.scrolled{top:8px!important}
+  .nav-wrap .container{width:calc(100% - 24px)}
+  .nav-wrap nav{padding:9px 10px 9px 15px}
+}
+
+</style>
 </head>
-
 <body>
+<div class="cursor-glow" id="glow"></div>
 
-    <div class="container fade-in">
-        <nav>
-            <div class="logo">PRO GYM</div>
-            <a href="#membership" class="btn btn-outline">Join the waitlist</a>
-        </nav>
+<div class="nav-wrap" id="nav">
+  <div class="container">
+    <nav>
+      <a class="logo" href="#">PRO<span>.</span>GYM</a>
+      <div class="nav-links">
+        <a href="#facility">Facility</a><a href="#experience">Experience</a><a href="#members">Members</a><a href="#membership">Membership</a>
+      </div>
+      <div class="nav-actions"><a href="#membership" class="btn">Join now <span>↗</span></a><button class="menu" aria-label="Open menu">☰</button></div>
+    </nav>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-media"></div>
+  <div class="container">
+    <div class="hero-content reveal">
+      <div class="eyebrow">Austin · Texas · 24/7</div>
+      <h1>Train like<br><span class="outline">you mean it.</span></h1>
+      <p class="hero-copy">A serious strength facility for people who are done waiting for equipment, dodging crowds, and making excuses.</p>
+      <div class="hero-buttons">
+        <a class="btn" href="#membership">Explore membership ↗</a>
+        <a class="btn secondary" href="#facility">Tour the facility</a>
+      </div>
+      <div class="hero-meta">
+        <div><strong>15</strong><span>Squat racks</span></div>
+        <div><strong>300</strong><span>Member cap</span></div>
+        <div><strong>24/7</strong><span>Access</span></div>
+      </div>
     </div>
+  </div>
+  <div class="container scroll">Scroll to explore ↓</div>
+</header>
 
-    <!-- Hero Section -->
-    <header class="container hero">
-        <div class="fade-in delay-1">
-            <h1>A facility built for serious training.</h1>
-            <p>We provide the space and the equipment. You do the work. No crowded floors, no waiting for squat racks,
-                and no hidden maintenance fees.</p>
-            <a href="#membership" class="btn">View Membership</a>
-        </div>
-        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop"
-            alt="Real photo of the gym floor" class="hero-img fade-in delay-2">
-    </header>
+<div class="marquee"><div class="marquee-track">
+  <span>Heavy weights</span><b>✦</b><span>No excuses</span><b>✦</b><span>24/7 access</span><b>✦</b><span>Serious training</span><b>✦</b><span>Heavy weights</span><b>✦</b><span>No excuses</span><b>✦</b><span>24/7 access</span><b>✦</b><span>Serious training</span><b>✦</b>
+</div></div>
 
-    <!-- Hard Numbers / Proof -->
-    <section class="numbers">
-        <div class="container numbers-grid fade-in delay-3">
-            <div class="number-item">
-                <h2>15</h2>
-                <p>Squat racks available on the main floor. You will not wait to lift.</p>
-            </div>
-            <div class="number-item">
-                <h2>300</h2>
-                <p>Strict member capacity. When we hit 300, doors close to new signups.</p>
-            </div>
-            <div class="number-item">
-                <h2>24/7</h2>
-                <p>Keycard access for members. Train on your own schedule.</p>
-            </div>
-        </div>
-    </section>
+<section class="proof">
+  <div class="container proof-grid">
+    <div class="stat reveal"><div class="stat-number"><span data-count="15">0</span><small>+</small></div><p>Squat racks on the main floor. No 20-minute queue before your top set.</p></div>
+    <div class="stat reveal"><div class="stat-number"><span data-count="300">0</span></div><p>Strict member capacity. When we're full, we're full.</p></div>
+    <div class="stat reveal"><div class="stat-number">24<small>/7</small></div><p>Keycard access for members. Your schedule doesn't need to match ours.</p></div>
+  </div>
+</section>
 
-    <!-- The Facility / Equipment -->
-    <section class="container section-pad">
-        <h2>The Equipment</h2>
-        <p>We do not buy budget machines. Here is exactly what you get access to when you join.</p>
+<section class="section" id="facility">
+  <div class="container split">
+    <div class="section-head reveal">
+      <div class="eyebrow">01 / The arsenal</div>
+      <h2>Equipment that earns its floor space.</h2>
+      <p>We don't fill a room with shiny machines just to make it look busy. Every piece is selected for people who actually train.</p>
+    </div>
+    <div class="equipment reveal">
+      <div class="eq"><span class="eq-no">01</span><div><h3>Free weights</h3><p>Rogue Ohio Power Bars · Eleiko calibrated plates</p></div><strong>5–150 LB</strong><span class="eq-arrow">↗</span></div>
+      <div class="eq"><span class="eq-no">02</span><div><h3>Strength machines</h3><p>Prime Fitness cable towers · Plate-loaded equipment</p></div><strong>4 TOWERS</strong><span class="eq-arrow">↗</span></div>
+      <div class="eq"><span class="eq-no">03</span><div><h3>Conditioning</h3><p>Concept2 rowers · Assault equipment · 40-yard turf</p></div><strong>40 YD</strong><span class="eq-arrow">↗</span></div>
+      <div class="eq"><span class="eq-no">04</span><div><h3>Recovery & locker rooms</h3><p>Clean facilities · Towel service · Dedicated changing areas</p></div><strong>24/7</strong><span class="eq-arrow">↗</span></div>
+    </div>
+  </div>
+</section>
 
-        <div class="space-grid">
-            <div class="facility-card">
-                <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=1469&auto=format&fit=crop"
-                    alt="Free weights area">
-                <h3>Free Weights</h3>
-                <ul>
-                    <li><span>Rogue Ohio Power Bars</span> <span>12</span></li>
-                    <li><span>Eleiko Calibrated Plates</span> <span>5,000+ lbs</span></li>
-                    <li><span>Dumbbells (Pairs)</span> <span>5 to 150 lbs</span></li>
-                </ul>
-            </div>
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="gallery-head reveal"><div><div class="eyebrow">02 / Inside PRO</div><h2>The floor.</h2></div><p>Built to feel like a training facility, not a hotel lobby with dumbbells.</p></div>
+    <div class="gallery-grid">
+      <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=85&w=1500&auto=format&fit=crop" alt="Gym floor"></div>
+      <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?q=85&w=1000&auto=format&fit=crop" alt="Dumbbells"></div>
+      <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1534438097545-a2c7201c18c9?q=85&w=1000&auto=format&fit=crop" alt="Strength machines"></div>
+      <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=85&w=1000&auto=format&fit=crop" alt="Free weights"></div>
+    </div>
+  </div>
+</section>
 
-            <div class="facility-card">
-                <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=1470&auto=format&fit=crop"
-                    alt="Machine area">
-                <h3>Machines & Conditioning</h3>
-                <ul>
-                    <li><span>Prime Fitness Cable Towers</span> <span>4</span></li>
-                    <li><span>Concept2 Rowers</span> <span>6</span></li>
-                    <li><span>Indoor Turf</span> <span>40 Yards</span></li>
-                </ul>
-            </div>
-        </div>
+<section class="section experience" id="experience">
+  <div class="container">
+    <div class="section-head reveal"><div class="eyebrow">03 / The difference</div><h2>Everything around<br>the workout matters.</h2></div>
+    <div class="exp-grid">
+      <article class="exp-card reveal"><div class="exp-icon">◉</div><h3>Never crowded.</h3><p>We cap membership at 300. That number isn't marketing copy — it's how we protect the training experience.</p></article>
+      <article class="exp-card reveal"><div class="exp-icon">↯</div><h3>Always open.</h3><p>Train before work, after a night shift, or when inspiration randomly hits at 2:13 AM. Keycard access is always on.</p></article>
+      <article class="exp-card reveal"><div class="exp-icon">＋</div><h3>Actually maintained.</h3><p>Equipment gets inspected, the floor gets cleaned, and broken gear doesn't become a permanent museum exhibit.</p></article>
+    </div>
+  </div>
+</section>
 
-        <!-- Equipment Photos Gallery -->
-        <div class="gallery-grid">
-            <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1470&auto=format&fit=crop"
-                alt="Squat Racks" class="gallery-img">
-            <img src="https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?q=80&w=1471&auto=format&fit=crop"
-                alt="Dumbbell Rack" class="gallery-img">
-            <img src="https://images.unsplash.com/photo-1534438097545-a2c7201c18c9?q=80&w=1470&auto=format&fit=crop"
-                alt="Plate Loaded Machines" class="gallery-img">
-        </div>
-    </section>
+<section class="section" id="members">
+  <div class="container testimonial-wrap">
+    <div class="section-head reveal"><div class="eyebrow">04 / Member logs</div><h2>Don't take our word for it.</h2><p>Real people. Real training. No suspiciously perfect stock-photo testimonials.</p></div>
+    <div class="quote-card reveal">
+      <div class="quote-mark">“</div>
+      <div class="quote">Finally a gym where I don't have to wait 20 minutes for a bench. The strict cap on memberships actually works.</div>
+      <div class="author">Marcus T.<span>Member since 2024</span></div>
+    </div>
+  </div>
+</section>
 
-    <!-- Real Member Experiences (Testimonials) -->
-    <section class="testimonials section-pad">
-        <div class="container">
-            <h2>Member Logs</h2>
-            <p>Don't take our word for it. Hear from people who train here every week.</p>
+<section class="section pricing" id="membership">
+  <div class="container">
+    <div class="section-head reveal"><div class="eyebrow">05 / Membership</div><h2>Pick your level.<br>Then get to work.</h2><p>No enrollment fees. No cancellation fees. No mysterious little asterisks hiding in the bushes.</p></div>
+    <div class="price-grid">
+      <article class="price-card reveal"><h3>Off-Peak</h3><div class="price">$55 <small>/ month</small></div><ul class="features"><li>Access 9 AM – 4 PM</li><li>Full equipment access</li><li>Locker room access</li><li>No guest passes</li></ul><a class="btn secondary" href="#">Select plan ↗</a></article>
+      <article class="price-card featured reveal"><div class="badge">Most popular</div><h3>Standard</h3><div class="price">$85 <small>/ month</small></div><ul class="features"><li>24/7 keycard access</li><li>Full equipment access</li><li>Locker room + towel service</li><li>1 free guest pass / month</li></ul><a class="btn" href="#">Sign up now ↗</a></article>
+      <article class="price-card reveal"><h3>Coached</h3><div class="price">$195 <small>/ month</small></div><ul class="features"><li>24/7 keycard access</li><li>Custom monthly programming</li><li>1-on-1 form check / month</li><li>Unlimited guest passes</li></ul><a class="btn secondary" href="#">Select plan ↗</a></article>
+    </div>
+  </div>
+</section>
 
-            <div class="test-grid">
-                <div class="test-card">
-                    <p class="quote">"Finally a gym where I don't have to wait 20 minutes for a bench. The strict cap on
-                        memberships actually works."</p>
-                    <p class="author">Marcus T.</p>
-                    <p class="stats">Member since 2024</p>
-                </div>
-                <div class="test-card">
-                    <p class="quote">"The calibrated plates and stiff bars make a huge difference for prep. It’s clean,
-                        it’s loud, and the equipment is well-maintained."</p>
-                    <p class="author">Sarah J.</p>
-                    <p class="stats">Powerlifter</p>
-                </div>
-                <div class="test-card">
-                    <p class="quote">"I come in at 2 AM because of my shift work. The 24/7 access is seamless and the
-                        facility is always spotless."</p>
-                    <p class="author">David R.</p>
-                    <p class="stats">Night-shift Nurse</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<section class="cta">
+  <div class="container reveal">
+    <div class="eyebrow" style="justify-content:center">Ready when you are</div>
+    <h2>Stop looking for the perfect gym.<br>Start building the perfect routine.</h2>
+    <p>Your next PR isn't going to lift itself.</p>
+    <a class="btn" href="#membership">Join PRO GYM ↗</a>
+  </div>
+</section>
 
-    <!-- Pricing -->
-    <section id="membership" class="pricing section-pad">
-        <div class="container">
-            <div style="text-align: center;">
-                <h2>Simple Pricing</h2>
-                <p>No enrollment fees. No cancellation fees. Cancel anytime.</p>
-            </div>
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div><div class="footer-logo">PRO<span>.</span>GYM</div><p style="margin-top:12px;font-size:.8rem">Built for serious training.<br>No fluff. Just work.</p></div>
+      <div class="footer-links">
+        <div class="footer-col"><h4>Explore</h4><a href="#facility">Facility</a><a href="#experience">Experience</a><a href="#members">Members</a></div>
+        <div class="footer-col"><h4>Visit</h4><a href="#">123 Industrial Way</a><a href="#">Austin, TX 78701</a><a href="#">Mon–Fri · 8AM–8PM staffed</a></div>
+        <div class="footer-col"><h4>Social</h4><a href="#">Instagram ↗</a><a href="#">Contact ↗</a><a href="#">Facility rules ↗</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 PRO GYM Strength. All rights reserved.</span><span>Train hard. Recover harder.</span></div>
+  </div>
+</footer>
 
-            <div class="pricing-grid">
-                <!-- Package 1 -->
-                <div class="pricing-card">
-                    <h3>Off-Peak Access</h3>
-                    <div class="price">$55<span> / month</span></div>
-                    <ul class="pricing-features">
-                        <li>Access from 9 AM to 4 PM only</li>
-                        <li>Full equipment access</li>
-                        <li>Locker room access</li>
-                        <li>No guest passes</li>
-                    </ul>
-                    <button class="btn btn-outline" style="width: 100%; border-color: #555; color: #FFF;">Select
-                        Plan</button>
-                </div>
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>20),{passive:true});
 
-                <!-- Package 2 (Featured) -->
-                <div class="pricing-card featured">
-                    <h3>Standard Access</h3>
-                    <div class="price">$85<span> / month</span></div>
-                    <ul class="pricing-features">
-                        <li>24/7 Keycard Access</li>
-                        <li>Full equipment access</li>
-                        <li>Locker room & towel service</li>
-                        <li>1 Free guest pass per month</li>
-                    </ul>
-                    <button class="btn" style="width: 100%;">Sign Up Now</button>
-                </div>
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}})
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
-                <!-- Package 3 -->
-                <div class="pricing-card">
-                    <h3>Coached Plan</h3>
-                    <div class="price">$195<span> / month</span></div>
-                    <ul class="pricing-features">
-                        <li>24/7 Keycard Access</li>
-                        <li>Custom monthly programming</li>
-                        <li>1-on-1 form check (1hr/mo)</li>
-                        <li>Unlimited guest passes</li>
-                    </ul>
-                    <button class="btn btn-outline" style="width: 100%; border-color: #555; color: #FFF;">Select
-                        Plan</button>
-                </div>
-            </div>
-        </div>
-    </section>
+const counters=document.querySelectorAll('[data-count]');
+const counterObs=new IntersectionObserver(entries=>{
+ entries.forEach(entry=>{
+  if(!entry.isIntersecting)return;
+  const el=entry.target,target=+el.dataset.count,duration=1100,start=performance.now();
+  const tick=now=>{
+   const p=Math.min((now-start)/duration,1),ease=1-Math.pow(1-p,3);
+   el.textContent=Math.floor(target*ease);
+   if(p<1)requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);counterObs.unobserve(el);
+ });
+},{threshold:.7});
+counters.forEach(c=>counterObs.observe(c));
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h4>PRO GYM</h4>
-                    <p style="font-size: 0.875rem;">A facility built for serious training. No fluff, just heavy weights
-                        and hard work.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Location</h4>
-                    <ul>
-                        <li>123 Industrial Way</li>
-                        <li>Suite A</li>
-                        <li>Austin, TX 78701</li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Hours</h4>
-                    <ul>
-                        <li><strong>Members:</strong> 24/7 Access</li>
-                        <li><strong>Staffed:</strong> Mon-Fri, 8AM - 8PM</li>
-                        <li><strong>Staffed:</strong> Sat-Sun, 9AM - 5PM</li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Links</h4>
-                    <ul>
-                        <li><a href="#">Facility Rules</a></li>
-                        <li><a href="#">Drop-in Passes</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Instagram</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                © 2026 PRO GYM Strength. All rights reserved.
-            </div>
-        </div>
-    </footer>
-
+const glow=document.getElementById('glow');
+window.addEventListener('pointermove',e=>{
+ glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px';
+},{passive:true});
+</script>
 </body>
-
 </html>
