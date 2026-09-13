@@ -1,1 +1,58 @@
-import {projects} from "../data/mock";import Icon from "./Icon";export default function Projects(){return <main className="animate-enter space-y-6"><div className="flex flex-col justify-between gap-4 md:flex-row md:items-end"><div><p className="eyebrow">Delivery</p><h2 className="mt-2 text-3xl font-bold tracking-[-.04em]">Projects</h2><p className="mt-2 text-sm text-muted">See what is moving, blocked or falling behind.</p></div><button className="btn-accent"><Icon name="Plus" size={16}/>New project</button></div><div className="grid gap-4 md:grid-cols-2">{projects.map(p=><div key={p.name} className="panel p-5 transition duration-300 hover:-translate-y-1 hover:shadow-lift"><div className="flex items-start justify-between gap-3"><div><span className="eyebrow">{p.client}</span><h3 className="mt-2 text-base font-bold">{p.name}</h3></div><span className={`rounded-full px-2.5 py-1 text-[10px] font-bold ${p.status==="At risk"?"bg-[#fbe6df] text-accent":"bg-moss text-olive"}`}>{p.status}</span></div><div className="mt-7 flex items-end justify-between"><span className="text-3xl font-bold tracking-tight">{p.progress}%</span><span className="text-xs text-muted">Due {p.due}</span></div><div className="mt-3 h-2 overflow-hidden rounded-full bg-[#ecece5]"><div className="h-full rounded-full bg-ink transition-all duration-700" style={{width:`${p.progress}%`}}/></div><div className="mt-4 flex items-center gap-2 text-xs text-muted"><Icon name="Users" size={14}/>4 people <span>·</span><Icon name="Clock3" size={14}/>128h logged</div></div>)}</div></main>}
+import { useState } from "react";
+import { useData } from "../context/DataContext";
+import Icon from "./Icon";
+import NewModal from "./NewModal";
+
+export default function Projects() {
+  const { projects, addProject } = useData();
+  const [showModal, setShowModal] = useState(false);
+
+  const handleAddProject = (newProject) => {
+    addProject(newProject);
+  };
+
+  return (
+    <main className="animate-enter space-y-6">
+      <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+        <div>
+          <p className="eyebrow">Delivery</p>
+          <h2 className="mt-2 text-3xl font-bold tracking-[-.04em]">Projects</h2>
+          <p className="mt-2 text-sm text-muted">See what is moving, blocked or falling behind.</p>
+        </div>
+        <button className="btn-accent" onClick={() => setShowModal(true)}>
+          <Icon name="Plus" size={16} />
+          New project
+        </button>
+      </div>
+      <div className="grid gap-4 md:grid-cols-2">
+        {projects.map((p) => (
+          <div key={p.name} className="panel p-5 transition duration-300 hover:-translate-y-1 hover:shadow-lift">
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <span className="eyebrow">{p.client}</span>
+                <h3 className="mt-2 text-base font-bold">{p.name}</h3>
+              </div>
+              <span className={`rounded-full px-2.5 py-1 text-[10px] font-bold ${p.status === "At risk" ? "bg-[#fbe6df] text-accent" : "bg-moss text-olive"}`}>
+                {p.status}
+              </span>
+            </div>
+            <div className="mt-7 flex items-end justify-between">
+              <span className="text-3xl font-bold tracking-tight">{p.progress}%</span>
+              <span className="text-xs text-muted">Due {p.due}</span>
+            </div>
+            <div className="mt-3 h-2 overflow-hidden rounded-full bg-[#ecece5]">
+              <div className="h-full rounded-full bg-ink transition-all duration-700" style={{ width: `${p.progress}%` }} />
+            </div>
+            <div className="mt-4 flex items-center gap-2 text-xs text-muted">
+              <Icon name="Users" size={14} />4 people <span>·</span>
+              <Icon name="Clock3" size={14} />128h logged
+            </div>
+          </div>
+        ))}
+      </div>
+      {showModal && (
+        <NewModal defaultType="Project" onClose={() => setShowModal(false)} onCreate={handleAddProject} />
+      )}
+    </main>
+  );
+}

@@ -1,1 +1,72 @@
-import {useState} from "react";import {leads} from "../data/mock";import Table from "./Table";import Icon from "./Icon";export default function Leads(){const[filter,setFilter]=useState("All");const filtered=filter==="All"?leads:leads.filter(l=>l.stage===filter);return <main className="animate-enter space-y-6"><div className="flex flex-col justify-between gap-4 md:flex-row md:items-end"><div><p className="eyebrow">Sales</p><h2 className="mt-2 text-3xl font-bold tracking-[-.04em]">Leads</h2><p className="mt-2 text-sm text-muted">Keep every opportunity moving.</p></div><button className="btn-accent"><Icon name="Plus" size={16}/>Add lead</button></div><div className="flex gap-2 overflow-x-auto pb-1">{["All","Qualified","Discovery","Proposal","Negotiation"].map(x=><button onClick={()=>setFilter(x)} key={x} className={`rounded-lg px-3 py-2 text-xs font-semibold transition ${filter===x?"bg-ink text-white":"bg-white text-muted hover:text-ink"}`}>{x}</button>)}</div><Table columns={["Company","Contact","Value","Stage","Age",""]} rows={filtered} renderRow={l=><tr key={l.company} className="group transition hover:bg-[#fafaf7]"><td className="px-5 py-4"><div className="flex items-center gap-3"><span className="grid h-9 w-9 place-items-center rounded-xl bg-[#e8e9e1] text-[10px] font-bold">{l.initials}</span><span className="font-semibold">{l.company}</span></div></td><td className="px-5 py-4 text-muted">{l.contact}</td><td className="px-5 py-4 font-semibold">{l.value}</td><td className="px-5 py-4"><span className="rounded-full bg-[#f0f1ea] px-2.5 py-1 text-[11px] font-semibold">{l.stage}</span></td><td className="px-5 py-4 text-muted">{l.age}</td><td className="px-5 py-4 text-right"><Icon name="MoreHorizontal" size={16} className="ml-auto text-muted"/></td></tr>}/></main>}
+import { useState } from "react";
+import { useData } from "../context/DataContext";
+import Table from "./Table";
+import Icon from "./Icon";
+import NewModal from "./NewModal";
+
+export default function Leads() {
+  const { leads, addLead } = useData();
+  const [filter, setFilter] = useState("All");
+  const [showModal, setShowModal] = useState(false);
+
+  const filtered = filter === "All" ? leads : leads.filter((l) => l.stage === filter);
+
+  const handleAddLead = (newLead) => {
+    addLead(newLead);
+  };
+
+  return (
+    <main className="animate-enter space-y-6">
+      <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+        <div>
+          <p className="eyebrow">Sales</p>
+          <h2 className="mt-2 text-3xl font-bold tracking-[-.04em]">Leads</h2>
+          <p className="mt-2 text-sm text-muted">Keep every opportunity moving.</p>
+        </div>
+        <button className="btn-accent" onClick={() => setShowModal(true)}>
+          <Icon name="Plus" size={16} />
+          Add lead
+        </button>
+      </div>
+      <div className="flex gap-2 overflow-x-auto pb-1">
+        {["All", "Qualified", "Discovery", "Proposal", "Negotiation"].map((x) => (
+          <button
+            onClick={() => setFilter(x)}
+            key={x}
+            className={`rounded-lg px-3 py-2 text-xs font-semibold transition ${filter === x ? "bg-ink text-white" : "bg-white text-muted hover:text-ink"}`}
+          >
+            {x}
+          </button>
+        ))}
+      </div>
+      <Table
+        columns={["Company", "Contact", "Value", "Stage", "Age", ""]}
+        rows={filtered}
+        renderRow={(l) => (
+          <tr key={l.company} className="group transition hover:bg-[#fafaf7]">
+            <td className="px-5 py-4">
+              <div className="flex items-center gap-3">
+                <span className="grid h-9 w-9 place-items-center rounded-xl bg-[#e8e9e1] text-[10px] font-bold">
+                  {l.initials}
+                </span>
+                <span className="font-semibold">{l.company}</span>
+              </div>
+            </td>
+            <td className="px-5 py-4 text-muted">{l.contact}</td>
+            <td className="px-5 py-4 font-semibold">{l.value}</td>
+            <td className="px-5 py-4">
+              <span className="rounded-full bg-[#f0f1ea] px-2.5 py-1 text-[11px] font-semibold">{l.stage}</span>
+            </td>
+            <td className="px-5 py-4 text-muted">{l.age}</td>
+            <td className="px-5 py-4 text-right">
+              <Icon name="MoreHorizontal" size={16} className="ml-auto text-muted" />
+            </td>
+          </tr>
+        )}
+      />
+      {showModal && (
+        <NewModal defaultType="Lead" onClose={() => setShowModal(false)} onCreate={handleAddLead} />
+      )}
+    </main>
+  );
+}
